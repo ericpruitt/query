@@ -1,5 +1,4 @@
-CC = clang
-CFLAGS = -std=c99 -Wall -Weverything
+CFLAGS = -std=c99 -Wall
 
 query: query.c
 	$(CC) $(CFLAGS) $< -o $@
