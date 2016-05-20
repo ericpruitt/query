@@ -83,7 +83,7 @@ void free_line_buffer(void)
  * signal is sent by the child process after a fork to indicate that execvp(3)
  * failed which is a fatal error.
  */
-void sigusr1_handler()
+void sigusr1_handler(int signal)
 {
     exit(1);
 }
