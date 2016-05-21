@@ -183,8 +183,6 @@ next_line:
             }
             perror(getline_function);
             return 1;
-        } else if (!line_length) {
-            break;
         } else {
             eol = line + line_length;
         }
@@ -213,6 +211,8 @@ next_line:
                         goto next_line;
                     }
                 }
+            } else if (*cursor == '\0') {
+                break;
             }
 
             // Attempt to open the path represented by the input, verify that
