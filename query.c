@@ -283,7 +283,7 @@ next_line:
                 if ((display_on_success && return_code == EXIT_SUCCESS) ||
                    (!display_on_success && return_code != EXIT_SUCCESS)) {
                     if (delimation == NULL_BYTE_DELIMATION) {
-                        fwrite(line, (size_t) line_length + 1, 1, stdout);
+                        fwrite(line, (size_t) line_length, 1, stdout);
                     } else {
                         puts(cursor);
                     }
