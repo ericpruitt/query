@@ -92,23 +92,23 @@ void sigusr1_handler(int signal)
 int main(int argc, char **argv)
 {
     pid_t child_pid;
-    delimation_et delimation = LINE_DELIMATION;
-    int display_on_success = 1;
-    size_t buffer_length = 0;
-    int non_fatal_errors = 0;
-    int redirect_stderr = 0;
-
     char *cursor;
     int dev_null_fd;
     char *eol;
     int errout_fd;
+    struct stat file_status;
     const char *getline_function;
     int input_fd;
     ssize_t line_length;
     int option;
     int return_code;
     pid_t status;
-    struct stat file_status;
+
+    delimation_et delimation = LINE_DELIMATION;
+    int display_on_success = 1;
+    size_t buffer_length = 0;
+    int non_fatal_errors = 0;
+    int redirect_stderr = 0;
 
     while ((option = getopt(argc, argv, "+!0hnsw")) != -1) {
         switch (option) {
@@ -252,7 +252,7 @@ next_line:
                     (dup2(dev_null_fd, STDOUT_FILENO) == -1) ||
                     (dup2(errout_fd, STDERR_FILENO) == -1)) {
 
-                    perror("fork->dup2");
+                    perror("dup2");
                     return 1;
                 }
                 execvp(argv[optind], &argv[optind]);
