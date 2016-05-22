@@ -253,6 +253,7 @@ next_line:
                     (dup2(errout_fd, STDERR_FILENO) == -1)) {
 
                     perror("dup2");
+                    kill(getppid(), SIGUSR1);
                     return 1;
                 }
                 execvp(argv[optind], &argv[optind]);
