@@ -91,7 +91,6 @@ void sigusr1_handler(int signal)
 
 int main(int argc, char **argv)
 {
-    pid_t child_pid;
     char *cursor;
     int dev_null_fd;
     char *eol;
@@ -240,7 +239,7 @@ next_line:
                 return 1;
             }
 
-            switch ((child_pid = fork())) {
+            switch (fork()) {
               case -1:
                 perror("fork");
                 return 1;
